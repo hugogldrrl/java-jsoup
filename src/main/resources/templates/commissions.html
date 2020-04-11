@@ -1,0 +1,94 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+			.bold {font-weight: bold;}
+			.uppercase {text-transform: uppercase;}
+			.bold-uppercase {text-transform: uppercase;font-weight: bold;}
+			.max-width {width: 100%;}
+			.blue-section {padding: 5px 20px 5px 20px;text-transform: uppercase;font-weight: bold;font-size: 14px;background-color:#123E52;color: #ffffff;}
+			.section {padding: 5px 20px 5px 0px;text-transform: uppercase;font-weight: bold;font-size: 14px;}
+			.simple-table {padding-left: 25px;text-align: left;}
+			.simple-table td {padding: 2px 15px 2px 15px;font-size: 13px;}
+			.main-table {border: 3px solid #000000;width: 100%;text-align: left;border-collapse: collapse;}
+			.main-table thead th {padding: 2px 15px 2px 15px;font-size: 15px;font-weight: bold;color: #ffffff;text-align: left;text-transform: uppercase;background: #2E86C1;border-bottom: 2px solid #000000;}
+			.main-table tbody td {font-size: 13px;border: 1px solid #000000;padding: 5px 4px;}
+		</style>
+</head>
+<body>
+
+    <h2>Xunta's Commissions</h2>
+    <h4>Service commission announcements and temporary assignments.</h4>
+
+    <table class="simple-table">
+        <tr>
+            <td class="bold-uppercase">Final users:</td>
+            <td th:text="${criteria.getFinalUsers()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase">Counselling:</td>
+            <td th:text="${criteria.getCounselling()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >Start date:</td>
+            <td th:text="${criteria.getStartDate()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >End date:</td>
+            <td th:text="${criteria.getEndDate()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >Group:</td>
+            <td th:text="${criteria.getGroup()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >Level:</td>
+            <td th:text="${criteria.getLevel()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >Province code:</td>
+            <td th:text="${criteria.getProvinceCode()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >District:</td>
+            <td th:text="${criteria.getDistrict()}"/>
+        </tr>
+        <tr>
+            <td class="bold-uppercase" >Description:</td>
+            <td th:text="${criteria.getDescription()}"/>
+        </tr>
+    </table>
+
+    <br>
+
+    <table class="max-width">
+        <tr>
+            <td class="blue-section" th:text="${results.size()} + ' Result'" th:if="${results.size() == 1}"/>
+            <td class="blue-section" th:text="${results.size()} + ' Results'" th:if="${results.size() > 1}"/>
+        </tr>
+    </table>
+
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th>Destiny center</th>
+                <th>Job Code</th>
+                <th>Denomination</th>
+                <th>Provision</th>
+                <th>Group</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:block th:each="result : ${results}"}>
+                <td th:text="${result.getDestinyCenter()}"/>
+                <td th:text="${result.getJobCode()}"/>
+                <td th:text="${result.getDenomination()}"/>
+                <td th:text="${result.getProvision()}"/>
+                <td th:text="${result.getGroup()}"/>
+                <td th:text="${result.getLevel()}"/>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
